@@ -1,4 +1,4 @@
-package com.example.quantri_app
+package com.quantri.app
 
 import io.flutter.embedding.android.FlutterActivity
 
