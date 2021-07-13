@@ -23,8 +23,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    // get app screen size
     Size screenSize = MediaQuery.of(context).size;
-
+    // body
     return Scaffold(
       backgroundColor: primaryColor,
       body: SafeArea(
@@ -33,6 +34,8 @@ class _DashboardPageState extends State<DashboardPage> {
           height: screenSize.height,
           child: Stack(
             children: [
+
+              // background container
               Stack(
                 children: [
                   Container(
@@ -62,6 +65,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   )
                 ],
               ),
+
+              // dashboard container
               Positioned(
                 bottom: 0,
                 child: Container(
@@ -74,6 +79,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: Stack(
                     children: [
                       DashboardTenantQueue(),
+
+                      // add inner glow to list top and bottom edge
                       Positioned(
                         top: 0,
                         child: Container(

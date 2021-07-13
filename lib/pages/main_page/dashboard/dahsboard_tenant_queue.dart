@@ -8,8 +8,10 @@ class DashboardTenantQueue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // get app screen size
     Size screenSize = MediaQuery.of(context).size;
     
+    // body
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Padding(
@@ -17,6 +19,8 @@ class DashboardTenantQueue extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
+            // tenant name
             Text("Tenan", style: TextStyle(fontSize: 18),),
             SizedBox(height: 14,),
             TextFormField(
@@ -30,6 +34,8 @@ class DashboardTenantQueue extends StatelessWidget {
               ),
             ),
             SizedBox(height: 42,),
+
+            // queue detail
             Container(
               height: 175,
               width: screenSize.width,
@@ -41,6 +47,8 @@ class DashboardTenantQueue extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+
+                        // queue number
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -48,6 +56,8 @@ class DashboardTenantQueue extends StatelessWidget {
                             FittedBox(child: Text("05", style: TextStyle(fontSize: 54, color: primaryColor),)),
                           ],
                         ),
+
+                        // services time
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -58,6 +68,8 @@ class DashboardTenantQueue extends StatelessWidget {
                       ],
                     ),
                   ),
+
+                  // QR Code
                   Container(
                     child: QrImage(
                       data: "test",
@@ -68,12 +80,16 @@ class DashboardTenantQueue extends StatelessWidget {
               ),
             ),
             SizedBox(height: 42,),
+
+            // reschedule button
             QAButton1(
               onPressed: (){},
               label: Text("Re-Schedule"),
               style: QAButtonStyle.SECONDARY,
             ),
             SizedBox(height: 14,),
+
+            // cancel button
             QAButton1(
               onPressed: (){},
               label: Text("Cancel"),

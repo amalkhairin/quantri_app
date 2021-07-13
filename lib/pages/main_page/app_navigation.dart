@@ -10,9 +10,10 @@ class AppNavigation extends StatefulWidget {
 }
 
 class _AppNavigationState extends State<AppNavigation> {
-
+  // initial page index
   int _selectedPage = 0;
 
+  // list pages
   List<Widget> _pages = [
     DashboardPage(),
     Container(),
@@ -21,9 +22,12 @@ class _AppNavigationState extends State<AppNavigation> {
 
   @override
   Widget build(BuildContext context) {
+
+    // body
     return Scaffold(
       backgroundColor: Colors.white,
       body: _pages[_selectedPage],
+      // bottom navigation bar
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
