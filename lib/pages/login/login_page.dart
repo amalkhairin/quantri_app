@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // text form controller
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -20,8 +21,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {  
+    // get app screen size
     Size screenSize = MediaQuery.of(context).size;
 
+    // body
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -36,11 +39,15 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     SizedBox(height: 72,),
+                    
+                    // logo container
                     Container(
                       width: 120,
                       child: Image.asset('assets/img/logo-1.5x.png', fit: BoxFit.fitWidth,),
                     ),
                     SizedBox(height: 64,),
+
+                    // username input form
                     TextFormField(
                       controller: _usernameController,
                       textInputAction: TextInputAction.next,
@@ -59,6 +66,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     SizedBox(height: 24,),
+
+                    // password input form
                     TextFormField(
                       controller: _passwordController,
                       obscureText: _isSecure,
@@ -85,15 +94,19 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     SizedBox(height: 120,),
+
+                    // login button
                     QAButton1(
                       onPressed: (){
                         if (_formKey.currentState!.validate()) {
-                          print("object");
+                          
                         }
                       },
                       label: Text("Log In", style: TextStyle(fontSize: 18),),
                       style: QAButtonStyle.PRIMARY,
                     ),
+
+                    // forgot password button
                     TextButton(
                       onPressed: (){
                         
@@ -104,12 +117,15 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text('Forgot Password'),
                     ),
                     SizedBox(height: 8,),
+
                     Container(
                       width: screenSize.width,
                       height: 1,
                       color: Color(0xFFEAEAEA),
                     ),
                     SizedBox(height: 18,),
+
+                    // register button
                     QAButton1(
                       onPressed: (){
                         Navigator.of(context).pushNamed(REGISTER_ONE_ROUTE);

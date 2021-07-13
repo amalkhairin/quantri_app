@@ -134,7 +134,7 @@ class _RegisterStepTwoPageState extends State<RegisterStepTwoPage> {
                         SizedBox(height: 54,),
                         QAButton1(
                           onPressed: _closeUpImage == null || _ktpImage == null? (){} : (){
-                            Navigator.of(context).pushNamedAndRemoveUntil(DASHBOARD_ROUTE, (route) => false);
+                            Navigator.of(context).pushNamedAndRemoveUntil(APP_NAVIGATION_ROUTE, (route) => false);
                           },
                           label: Text("Simpan"),
                         ),

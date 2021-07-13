@@ -11,7 +11,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
+  // text form controller
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _fullNameController = TextEditingController();
@@ -19,11 +19,13 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _numberPhoneController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
 
+  // saving text dropdown value
   String? _selectedProvince;
   String? _selectedCity;
   String? _selectedDistrict;
   String? _selectedVillage;
 
+  // dropdown input value
   var _provinces = ['DKI Jakarta', 'Jawa Barat', 'Jawa Timur'];
   var _cities = ['Kota Bandung', 'Kota Jakarta', 'Kabupaten Bandung'];
   var _districts = ['test1', 'test2', 'test3'];
@@ -34,11 +36,14 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    // get app screen size
     Size screenSize = MediaQuery.of(context).size;
 
+    // body
     return Scaffold(
       backgroundColor: Colors.white,
       extendBody: true,
+      // app bar
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -50,12 +55,15 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         title: Text("Registrasi Pengguna", style: TextStyle(fontSize: 24, color: Colors.black87),),
       ),
+      
       body: SafeArea(
         child: Container(
           width: screenSize.width,
           height: screenSize.height,
           child: Column(
             children: [
+              
+              // progress bar
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -91,6 +99,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
               ),
               SizedBox(height: 8,),
+
+              // form
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
@@ -100,6 +110,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         children: [
                           SizedBox(height: 36,),
+
+                          // username input form
                           TextFormField(
                             controller: _usernameController,
                             textInputAction: TextInputAction.next,
@@ -118,6 +130,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           SizedBox(height: 24,),
+
+                          // full name input form
                           TextFormField(
                             controller: _fullNameController,
                             textInputAction: TextInputAction.next,
@@ -136,6 +150,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           SizedBox(height: 24,),
+
+                          // email input form
                           TextFormField(
                             controller: _emailController,
                             textInputAction: TextInputAction.next,
@@ -155,6 +171,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           SizedBox(height: 24,),
+
+                          // phone number input form
                           TextFormField(
                             controller: _numberPhoneController,
                             textInputAction: TextInputAction.next,
@@ -174,6 +192,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           SizedBox(height: 24,),
+
+                          // address input form
                           TextFormField(
                             controller: _addressController,
                             textInputAction: TextInputAction.next,
@@ -192,6 +212,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           SizedBox(height: 24,),
+
+                          // province dropdown input form
                           FormField<String>(
                             validator: (String? value) {
                               if (value == null) {
@@ -230,6 +252,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             },
                           ),
                           SizedBox(height: 24,),
+
+                          // city dropdown input form
                           FormField<String>(
                             validator: (String? value) {
                               if (value == null) {
@@ -268,6 +292,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             },
                           ),
                           SizedBox(height: 24,),
+
+                          // districts dropdown input form
                           FormField<String>(
                             validator: (String? value) {
                               if (value == null) {
@@ -306,6 +332,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             },
                           ),
                           SizedBox(height: 24,),
+
+                          // villages dropdown input form
                           FormField<String>(
                             validator: (String? value) {
                               if (value == null){
@@ -344,6 +372,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             },
                           ),
                           SizedBox(height: 24,),
+
+                          // password input form
                           TextFormField(
                             controller: _passwordController,
                             obscureText: _isSecure,
@@ -370,9 +400,12 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           SizedBox(height: 24,),
+
+                          // next button
                           QAButton1(
                             onPressed: (){
-                              print(_formKey.currentState!.validate());
+
+                              // validate input form
                               if (_formKey.currentState!.validate()){
                                 Map<String, dynamic> _data = {
                                   "user_name": _usernameController.text,
@@ -387,6 +420,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   "password": _passwordController.text
                                 };
 
+                                // navigate to dashboard page
                                 Navigator.of(context).pushReplacementNamed(REGISTER_TWO_ROUTE, arguments: _data);
                               }
                             },
