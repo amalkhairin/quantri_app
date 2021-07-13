@@ -53,11 +53,11 @@ class QADialog extends StatelessWidget {
             SizedBox(height: 14,),
             Row(
               children: [
-                action!.isNotEmpty? action![0] : Container(),
+                action!.isNotEmpty? Flexible(child: action![0]) : Container(),
                 action!.length > 1
                   ? SizedBox(width: 8,)
                   : Container(),
-                action!.length > 1 ? action![1] : Container()
+                action!.length > 1 ? Flexible(child: action![1]) : Container()
               ],
             )
           ],
