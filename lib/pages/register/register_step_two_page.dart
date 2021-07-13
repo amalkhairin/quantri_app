@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:quantri_app/component/button/qa_button1.dart';
-import 'package:quantri_app/component/form/image_input.dart';
+import 'package:quantri_app/component/input_form/image_input.dart';
 import 'package:quantri_app/constant/color.dart';
 import 'package:quantri_app/constant/router_name.dart';
 
