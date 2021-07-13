@@ -10,6 +10,7 @@ enum QADialogType {
 }
 
 class QADialog extends StatelessWidget {
+  // class constructor
   final String? title,description;
   final QADialogType? dialogType;
   final List<Widget>? action;
@@ -37,6 +38,8 @@ class QADialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+
+            // dialog icon container
             Container(
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(14),
@@ -47,10 +50,16 @@ class QADialog extends StatelessWidget {
               child: dialogTypeIcon(dialogType!)
             ),
             SizedBox(height: 14,),
+
+            // dialog title
             Text(title!, textAlign: TextAlign.center, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
             SizedBox(height: 14,),
+
+            // dialog description
             Text(description!, textAlign: TextAlign.center,),
             SizedBox(height: 14,),
+
+            // dialog button
             Row(
               children: [
                 action!.isNotEmpty? Flexible(child: action![0]) : Container(),
