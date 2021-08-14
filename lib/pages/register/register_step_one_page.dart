@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quantri_app/component/button/qa_button1.dart';
+import 'package:quantri_app/component/input_form/qa_dropdown_input_field.dart';
+import 'package:quantri_app/component/input_form/qa_input_field.dart';
 import 'package:quantri_app/constant/color.dart';
 import 'package:quantri_app/constant/router_name.dart';
 
@@ -112,291 +114,112 @@ class _RegisterPageState extends State<RegisterPage> {
                           SizedBox(height: 36,),
 
                           // username input form
-                          TextFormField(
+                          QAInputField(
                             controller: _usernameController,
+                            hintText: "User Name",
                             textInputAction: TextInputAction.next,
-                            validator: (String? value){
-                              if (value!.isEmpty) {
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            decoration: InputDecoration(
-                              hintText: "User Name",
-                              filled: true,
-                              fillColor: fillColor,
-                              border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                            ),
                           ),
                           SizedBox(height: 24,),
 
                           // full name input form
-                          TextFormField(
+                          QAInputField(
                             controller: _fullNameController,
+                            hintText: "Nama Lengkap",
                             textInputAction: TextInputAction.next,
-                            validator: (String? value){
-                              if (value!.isEmpty) {
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            decoration: InputDecoration(
-                              hintText: "Nama Lengkap",
-                              filled: true,
-                              fillColor: fillColor,
-                              border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                            ),
                           ),
                           SizedBox(height: 24,),
 
                           // email input form
-                          TextFormField(
+                          QAInputField(
                             controller: _emailController,
+                            hintText: "Email",
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.emailAddress,
-                            validator: (String? value) {
-                              if (value!.isEmpty) {
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            decoration: InputDecoration(
-                              hintText: "Email",
-                              filled: true,
-                              fillColor: fillColor,
-                              border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                            ),
                           ),
                           SizedBox(height: 24,),
 
                           // phone number input form
-                          TextFormField(
+                          QAInputField(
                             controller: _numberPhoneController,
+                            hintText: "No. HP",
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.phone,
-                            validator: (String? value) {
-                              if (value!.isEmpty) {
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            decoration: InputDecoration(
-                              hintText: "No. HP",
-                              filled: true,
-                              fillColor: fillColor,
-                              border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                            ),
                           ),
                           SizedBox(height: 24,),
 
                           // address input form
-                          TextFormField(
+                          QAInputField(
                             controller: _addressController,
+                            hintText: "Alamat",
                             textInputAction: TextInputAction.next,
-                            validator: (String? value) {
-                              if (value!.isEmpty) {
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            decoration: InputDecoration(
-                              hintText: "Alamat",
-                              filled: true,
-                              fillColor: fillColor,
-                              border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                            ),
                           ),
                           SizedBox(height: 24,),
 
                           // province dropdown input form
-                          FormField<String>(
-                            validator: (String? value) {
-                              if (value == null) {
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            builder: (FormFieldState<String> state){
-                              return InputDecorator(
-                                decoration: InputDecoration(
-                                  errorText: state.errorText,
-                                  hintText: "Provinsi",
-                                  filled: true,
-                                  fillColor: fillColor,
-                                  border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                ),
-                                isEmpty: _selectedProvince == null,
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: _selectedProvince,
-                                    isDense: true,
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        _selectedProvince = value;
-                                        state.didChange(value);
-                                      });
-                                    },
-                                    items: _provinces.map((String value) => DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    )).toList()
-                                  ),
-                                ),
-                              );
+                          QADropdownInputField(
+                            value: _selectedProvince,
+                            items: _provinces,
+                            hintText: "Provinsi",
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedProvince = value;
+                              });
                             },
                           ),
                           SizedBox(height: 24,),
 
                           // city dropdown input form
-                          FormField<String>(
-                            validator: (String? value) {
-                              if (value == null) {
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            builder: (FormFieldState<String> state){
-                              return InputDecorator(
-                                decoration: InputDecoration(
-                                  errorText: state.errorText,
-                                  hintText: "Kota/Kabupaten",
-                                  filled: true,
-                                  fillColor: fillColor,
-                                  border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                ),
-                                isEmpty: _selectedCity == null,
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: _selectedCity,
-                                    isDense: true,
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        _selectedCity = value;
-                                        state.didChange(value);
-                                      });
-                                    },
-                                    items: _cities.map((String value) => DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    )).toList()
-                                  ),
-                                ),
-                              );
+                          QADropdownInputField(
+                            value: _selectedCity,
+                            items: _cities,
+                            hintText: "Kota/Kabupaten",
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedCity = value;
+                              });
                             },
                           ),
                           SizedBox(height: 24,),
 
                           // districts dropdown input form
-                          FormField<String>(
-                            validator: (String? value) {
-                              if (value == null) {
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            builder: (FormFieldState<String> state){
-                              return InputDecorator(
-                                decoration: InputDecoration(
-                                  errorText: state.errorText,
-                                  hintText: "Kecamatan",
-                                  filled: true,
-                                  fillColor: fillColor,
-                                  border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                ),
-                                isEmpty: _selectedDistrict == null,
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: _selectedDistrict,
-                                    isDense: true,
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        _selectedDistrict = value;
-                                        state.didChange(value);
-                                      });
-                                    },
-                                    items: _districts.map((String value) => DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    )).toList()
-                                  ),
-                                ),
-                              );
+                          QADropdownInputField(
+                            value: _selectedDistrict,
+                            items: _districts,
+                            hintText: "Kecamatan",
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedDistrict = value;
+                              });
                             },
                           ),
                           SizedBox(height: 24,),
 
                           // villages dropdown input form
-                          FormField<String>(
-                            validator: (String? value) {
-                              if (value == null){
-                                return "Kolom ini tidak boleh kosong";
-                              }
-                            },
-                            builder: (FormFieldState<String> state){
-                              return InputDecorator(
-                                decoration: InputDecoration(
-                                  errorText: state.errorText,
-                                  hintText: "Kelurahan",
-                                  filled: true,
-                                  fillColor: fillColor,
-                                  border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                                ),
-                                isEmpty: _selectedVillage == null,
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: _selectedVillage,
-                                    isDense: true,
-                                    onChanged: (String? value) {
-                                      setState(() {
-                                        _selectedVillage = value;
-                                        state.didChange(value);
-                                      });
-                                    },
-                                    items: _villages.map((String value) => DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    )).toList()
-                                  ),
-                                ),
-                              );
+                          QADropdownInputField(
+                            value: _selectedVillage,
+                            items: _villages,
+                            hintText: "Kelurahan",
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedVillage = value;
+                              });
                             },
                           ),
                           SizedBox(height: 24,),
 
                           // password input form
-                          TextFormField(
+                          QAInputField(
                             controller: _passwordController,
-                            obscureText: _isSecure,
-                            validator: (String? value) {
-                              if (value!.isEmpty || value.length < 6) {
-                                return "Password minimal 6 karakter";
-                              }
-                            },
-                            decoration: InputDecoration(
-                              hintText: "Password",
-                              filled: true,
-                              fillColor: fillColor,
-                              suffixIcon: IconButton(
-                                onPressed: (){
-                                  setState(() {
-                                    _isSecure = !_isSecure;
-                                  });
-                                },
-                                icon: _isSecure? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-                              ),
-                              border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              enabledBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+                            obsecureText: _isSecure,
+                            hintText: "Password",
+                            keyboardType: TextInputType.visiblePassword,
+                            suffixIcon: IconButton(
+                              onPressed: (){
+                                setState(() {
+                                  _isSecure = !_isSecure;
+                                });
+                              },
+                              icon: _isSecure? Icon(Icons.visibility) : Icon(Icons.visibility_off),
                             ),
                           ),
                           SizedBox(height: 24,),

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:quantri_app/component/button/qa_button1.dart';
-import 'package:quantri_app/component/input_form/image_input.dart';
+import 'package:quantri_app/component/input_form/qa_image_input_field.dart';
 import 'package:quantri_app/constant/color.dart';
 import 'package:quantri_app/constant/router_name.dart';
 
@@ -134,7 +134,7 @@ class _RegisterStepTwoPageState extends State<RegisterStepTwoPage> {
                         SizedBox(height: 54,),
                         QAButton1(
                           onPressed: _closeUpImage == null || _ktpImage == null? (){} : (){
-                            Navigator.of(context).pushNamedAndRemoveUntil(APP_NAVIGATION_ROUTE, (route) => false);
+                            Navigator.of(context).pushNamedAndRemoveUntil(DASHBOARD_ROUTE, (route) => false);
                           },
                           label: Text("Simpan"),
                         ),
