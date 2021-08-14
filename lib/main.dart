@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Qu-Antri',
       debugShowCheckedModeBanner: false,  //disable debug flag banner
       onGenerateRoute: generateRoute,     //generate route
-      initialRoute: APP_NAVIGATION_ROUTE, //set initial app route
+      initialRoute: LOGIN_ROUTE, //set initial app route
     );
   }
 }
