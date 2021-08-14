@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     QAButton1(
                       onPressed: (){
                         if (_formKey.currentState!.validate()) {
-                          
+                          Navigator.pushReplacementNamed(context, DASHBOARD_ROUTE);
                         }
                       },
                       label: Text("Log In", style: TextStyle(fontSize: 18),),
