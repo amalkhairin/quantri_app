@@ -1,4 +1,8 @@
+import 'dart:math';
+
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:quantri_app/component/button/qa_button1.dart';
 import 'package:quantri_app/component/dialog/qa_dialog.dart';
@@ -19,6 +23,22 @@ class _DashboardTenantQueueState extends State<DashboardTenantQueue> {
   bool _isHasData = false;
   List<String> _operationalTime = ["09.00", "10.00", "11.00", "12.00"];
   String? _selectedTime;
+  Position? _myPosition;
+
+  Future<void> _getMyPosition() async {
+    Position pos = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    print(pos);
+    setState(() {
+      _myPosition = pos;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getMyPosition();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +67,37 @@ class _DashboardTenantQueueState extends State<DashboardTenantQueue> {
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.circular(10)),
               ),
             ),
+            SizedBox(height: 14,),
+
+            //distance
+            _myPosition == null
+            ? Text("... Km")
+            : Container(
+              height: 48,
+              width: screenSize.width,
+              padding: EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.location_on, color: Colors.red, size: 16,),
+                  Text("${(Geolocator.distanceBetween(_myPosition!.latitude, _myPosition!.longitude, -7.025253, 107.519760)/10000).toStringAsFixed(2)} Km"),
+                  SizedBox(width: 4,),
+                  Text(">"),
+                  SizedBox(width: 8,),
+                  AnimatedTextKit(
+                    repeatForever: true,
+                    animatedTexts: [
+                      RotateAnimatedText("10 Menit dengan Motor", duration: Duration(milliseconds: 3000)),
+                      RotateAnimatedText("23 Menit dengan Berjalan Kaki", duration: Duration(milliseconds: 3000)),
+                      RotateAnimatedText("15 Menit dengan Mobil", duration: Duration(milliseconds: 3000)),
+                    ],
+                  )
+                ],
+              ),
+            ),
             SizedBox(height: 42,),
 
             // queue detail
@@ -67,7 +118,7 @@ class _DashboardTenantQueueState extends State<DashboardTenantQueue> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("No. Antrian", style: TextStyle(fontSize: 18),),
-                            FittedBox(child: Text("05", style: TextStyle(fontSize: 54, color: primaryColor),)),
+                            FittedBox(child: Text("15", style: TextStyle(fontSize: 54, color: primaryColor),)),
                           ],
                         ),
 
