@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quantri_app/component/button/qa_button1.dart';
+import 'package:quantri_app/component/dialog/qa_dialog.dart';
 import 'package:quantri_app/constant/color.dart';
 import 'package:quantri_app/constant/router_name.dart';
 
@@ -22,6 +24,33 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: this.context,
+                builder: (context) => QADialog(
+                  title: "Log Out", 
+                  description: "Apakah anda yakin ingin Logout?",
+                  action: [
+                    QAButton1(
+                      onPressed: (){
+                        Navigator.of(context).pop();
+                      },
+                      label: Text("Tidak"),
+                      style: QAButtonStyle.SECONDARY,
+                    ),
+                    QAButton1(
+                      onPressed: (){
+                        Navigator.pushNamedAndRemoveUntil(context, LOGIN_ROUTE, (Route<dynamic> route) => false);
+                      },
+                      label: Text("Ya"),
+                    ),
+                  ],
+                )
+              );
+            },
+            icon: Icon(Icons.logout, color: Colors.white),
+          ),
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, PROFILE_EDIT_ROUTE);
