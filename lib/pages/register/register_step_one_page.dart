@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quantri_app/component/button/qa_button1.dart';
 import 'package:quantri_app/component/input_form/qa_dropdown_input_field.dart';
 import 'package:quantri_app/component/input_form/qa_input_field.dart';
@@ -28,13 +31,47 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _selectedVillage;
 
   // dropdown input value
-  var _provinces = ['DKI Jakarta', 'Jawa Barat', 'Jawa Timur'];
-  var _cities = ['Kota Bandung', 'Kota Jakarta', 'Kabupaten Bandung'];
-  var _districts = ['test1', 'test2', 'test3'];
-  var _villages = ['village1', 'vilage2', 'village3'];
+  List<String> _provinces = [];
+  List<String> _cities = [];
+  List<String> _districts = [];
+  List<String> _villages = [];
 
   bool _isSecure = true;
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> _loadJsonAssets() async {
+    List _tempVillages = [];
+    List _tempDistricts = [];
+    List _tempCities = [];
+    List _tempProvinces = [];
+    var jsonVillages = await rootBundle.loadString("assets/json/desa.json");
+    var jsonDistricts = await rootBundle.loadString("assets/json/desa.json");
+    var jsonCities = await rootBundle.loadString("assets/json/desa.json");
+    var jsonProvinces = await rootBundle.loadString("assets/json/desa.json");
+    _tempVillages = jsonDecode(jsonVillages);
+    _tempDistricts = jsonDecode(jsonDistricts);
+    _tempCities = jsonDecode(jsonCities);
+    _tempProvinces =  jsonDecode(jsonProvinces);
+    _tempVillages.shuffle();
+    _tempDistricts.shuffle();
+    _tempCities.shuffle();
+    _tempProvinces.shuffle();
+
+    setState(() {
+      _provinces = _tempProvinces.sublist(0, 10).cast<String>();
+      _cities = _tempCities.sublist(0, 10).cast<String>();
+      _districts = _tempDistricts.sublist(0, 10).cast<String>();
+      _villages = _tempVillages.sublist(0, 10).cast<String>();
+    });
+    
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _loadJsonAssets();
+  }
 
   @override
   Widget build(BuildContext context) {
