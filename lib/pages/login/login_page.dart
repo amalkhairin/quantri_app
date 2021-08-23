@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quantri_app/component/button/qa_button1.dart';
 import 'package:quantri_app/component/dialog/qa_dialog.dart';
+import 'package:quantri_app/config/location_services.dart';
 import 'package:quantri_app/constant/color.dart';
 import 'package:quantri_app/constant/router_name.dart';
 
@@ -18,6 +19,13 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isSecure = true;
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkingLocationPermission();
+  }
 
   @override
   Widget build(BuildContext context) {  
